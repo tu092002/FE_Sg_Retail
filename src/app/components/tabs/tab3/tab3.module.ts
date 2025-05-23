@@ -14,7 +14,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { OrderItemsComponent } from "./order-items/order-items.component";
 import { MaterialModule } from "src/app/material/material.module";
 // import { OrderPageModule } from './orders/orders.module';
-import { OrderMainPages } from "./order-main/order-main.page";
+import { OrderMainPage } from "./order-main/order-main.page";
 // import { OrderDetailsPageModule } from './order/order-details/order-details.module';
 import { TableComponent } from "./table/table.component";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
@@ -33,8 +33,8 @@ import { Ng2SearchPipeModule } from "ng2-search-filter";
     ReactiveFormsModule,
     Ng2SearchPipeModule,
   ],
-  declarations: [Tab3Page, TableComponent, OrderMainPages, OrderItemsComponent],
-  entryComponents: [OrderMainPages, OrderItemsComponent, TableComponent],
+  declarations: [Tab3Page, TableComponent, OrderMainPage, OrderItemsComponent],
+  entryComponents: [OrderMainPage, OrderItemsComponent, TableComponent],
   providers: [DataService, HttpClientModule],
 })
 export class Tab3PageModule {}

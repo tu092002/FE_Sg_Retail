@@ -23,7 +23,7 @@ import { AuthService } from "src/app/services/auth.service";
   templateUrl: "./order-main.page.html",
   styleUrls: ["./order-main.page.scss"],
 })
-export class OrderMainPages implements OnInit {
+export class OrderMainPage implements OnInit {
   // Avariable
   Loading = true;
   // API
