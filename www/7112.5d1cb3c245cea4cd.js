@@ -1,0 +1,405 @@
+"use strict";
+(self.webpackChunkapp = self.webpackChunkapp || []).push([
+  [7112],
+  {
+    7112: (b, h, u) => {
+      u.r(h), u.d(h, { HistoryDetailsPageModule: () => P });
+      var m = u(6895),
+        s = u(4006),
+        r = u(8779),
+        g = u(9299),
+        t = u(4650),
+        f = u(2468),
+        y = u(4377);
+      function Z(e, c) {
+        if (
+          (1 & e &&
+            (t.TgZ(0, "ion-item", 19)(1, "ion-label", 20)(2, "h3", 21)(
+              3,
+              "span",
+              22,
+            ),
+            t._uU(4),
+            t.qZA(),
+            t.TgZ(5, "span", 23),
+            t._uU(6),
+            t.qZA(),
+            t.TgZ(7, "span", 23),
+            t._uU(8),
+            t.ALo(9, "currency"),
+            t.qZA()(),
+            t.TgZ(10, "p")(11, "span", 24),
+            t._uU(12),
+            t.qZA()()()()),
+          2 & e)
+        ) {
+          const o = c.$implicit;
+          t.xp6(4),
+            t.Oqu(o.itemcode),
+            t.xp6(2),
+            t.hij("S\u1ed1 l\u01b0\u1ee3ng: ", o.quantity, ""),
+            t.xp6(2),
+            t.hij(
+              "\u0110\u01a1n gi\xe1: ",
+              t.gM2(9, 4, o.price, "VND ", "symbol", "1.0"),
+              "",
+            ),
+            t.xp6(4),
+            t.Oqu(o.itemname);
+        }
+      }
+      const A = [
+        {
+          path: "",
+          component: (() => {
+            class e {
+              constructor(o, i, a, l, n, d) {
+                (this.route = o),
+                  (this._data = i),
+                  (this.modalCtrl = a),
+                  (this.formBuilder = l),
+                  (this.navCtrl = n),
+                  (this.authService = d),
+                  (this.currentUser = {}),
+                  (this.valueForm = ""),
+                  (this.dynamictype = "number"),
+                  (this.API = "/pos"),
+                  (this.Loading = !0);
+              }
+              ngOnInit() {
+                (this.currentUser = this.authService.getParseTokenUser()),
+                  this.loaddata(),
+                  this.createForm();
+              }
+              loaddata() {
+                (this.Loading = !1), this.createForm();
+                const o = +this.route.snapshot.params.id;
+                null != o || null != o
+                  ? this._data
+                      .get(
+                        UrlConstants.BASE_SERVER +
+                          this.currentUser.ip +
+                          this.API +
+                          `/${o}`,
+                      )
+                      .subscribe(
+                        (i) => {
+                          var a;
+                          (this.history = i || []),
+                            this.setValue(
+                              null === (a = this.history) || void 0 === a
+                                ? void 0
+                                : a.data,
+                            ),
+                            (this.Loading = !0);
+                        },
+                        (i) => {
+                          this.Loading = !0;
+                        },
+                      )
+                  : (this.Loading = !0);
+              }
+              setValue(o) {
+                const i = new Date(o.docDate),
+                  a = i.getFullYear();
+                var l = i.getMonth() + 1,
+                  n = i.getDate();
+                n < 10 && (n = "0" + n.toString()),
+                  l < 10 && (l = "0" + l.toString());
+                const d = n + "/" + l + "/" + a;
+                this.formGroup.controls.poscode.setValue(o.poscode),
+                  this.formGroup.controls.poscode.disable(),
+                  this.formGroup.controls.docdate.setValue(d),
+                  this.formGroup.controls.total.setValue(
+                    o.total
+                      .toString()
+                      .replace(/\D/g, "")
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                  ),
+                  this.formGroup.controls.discount.setValue(
+                    ((Number(o.total) * Number(o.discout)) / 100)
+                      .toString()
+                      .replace(/\D/g, "")
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                  ),
+                  this.formGroup.controls.doctotal.setValue(
+                    o.doctotal
+                      .toString()
+                      .replace(/\D/g, "")
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                  ),
+                  this.formGroup.controls.customerpay.setValue(
+                    o.customerpay
+                      .toString()
+                      .replace(/\D/g, "")
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                  ),
+                  this.formGroup.controls.refund.setValue(
+                    o.refund
+                      .toString()
+                      .replace(/\D/g, "")
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                  ),
+                  this.formGroup.controls.doctotal.disable(),
+                  this.formGroup.controls.refund.disable();
+              }
+              createForm() {
+                this.formGroup = this.formBuilder.group({
+                  poscode: [null, s.kI.required],
+                  docdate: [new Date().toDateString()],
+                  total: [0, s.kI.required],
+                  discount: [0],
+                  doctotal: [0, s.kI.required],
+                  customerpay: [0, s.kI.required],
+                  refund: [0, s.kI.required],
+                });
+              }
+              editForm() {
+                var o, i, a, l, n, d, p;
+                this.formGroup.controls.poscode.setValue(
+                  null === (o = this.history) || void 0 === o
+                    ? void 0
+                    : o.poscode,
+                ),
+                  this.formGroup.controls.docdate.setValue(
+                    null === (i = this.history) || void 0 === i
+                      ? void 0
+                      : i.docDate,
+                  ),
+                  this.formGroup.controls.total.setValue(
+                    null === (a = this.history) || void 0 === a
+                      ? void 0
+                      : a.total,
+                  ),
+                  this.formGroup.controls.discount.setValue(
+                    null === (l = this.history) || void 0 === l
+                      ? void 0
+                      : l.discount,
+                  ),
+                  this.formGroup.controls.doctotal.setValue(
+                    null === (n = this.history) || void 0 === n
+                      ? void 0
+                      : n.doctotal,
+                  ),
+                  this.formGroup.controls.customerpay.setValue(
+                    null === (d = this.history) || void 0 === d
+                      ? void 0
+                      : d.customerpay,
+                  ),
+                  this.formGroup.controls.refund.setValue(
+                    null === (p = this.history) || void 0 === p
+                      ? void 0
+                      : p.refund,
+                  );
+              }
+              UpdateItem(o) {
+                const i = +this.route.snapshot.params.id;
+                new Date(o.docdate);
+                var n = o.docdate;
+                n = n.replaceAll("/", ".");
+                var p = new Date(
+                  n.replace(/(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1"),
+                );
+                (o.docDate = p),
+                  (o.docdate = p),
+                  (o.discount = Number(o.discount.replace(/,/g, ""))),
+                  (o.total = Number(o.total.replace(/,/g, ""))),
+                  (o.doctotal = Number(o.doctotal.replace(/,/g, ""))),
+                  (o.refund = Number(o.refund.replace(/,/g, ""))),
+                  this._data
+                    .put(
+                      UrlConstants.BASE_SERVER +
+                        this.currentUser.ip +
+                        this.API +
+                        `/${i}`,
+                      o,
+                    )
+                    .subscribe((C) => {
+                      this._data.showUpdateSuccess(o.poscode);
+                    });
+              }
+              cancel() {
+                return this.modalCtrl.dismiss(null, "cancel");
+              }
+            }
+            return (
+              (e.ɵfac = function (o) {
+                return new (o || e)(
+                  t.Y36(g.gz),
+                  t.Y36(f.D),
+                  t.Y36(r.IN),
+                  t.Y36(s.qu),
+                  t.Y36(r.SH),
+                  t.Y36(y.e),
+                );
+              }),
+              (e.ɵcmp = t.Xpm({
+                type: e,
+                selectors: [["app-history-details"]],
+                decls: 45,
+                vars: 2,
+                consts: [
+                  ["slot", "start"],
+                  ["defaultHref", "/centers/tabs/history"],
+                  ["slot", "primary"],
+                  ["id", "open-modal-bp"],
+                  ["color", "danger", 3, "click"],
+                  ["name", "pencil"],
+                  [1, "ion-padding"],
+                  ["id", "vendor-form", 1, "form", 3, "formGroup"],
+                  ["position", "stacked"],
+                  ["formControlName", "poscode"],
+                  ["formControlName", "docdate"],
+                  ["formControlName", "total"],
+                  ["formControlName", "discount"],
+                  ["formControlName", "doctotal"],
+                  ["formControlName", "customerpay"],
+                  ["formControlName", "refund"],
+                  [1, "text-center", 2, "margin-top", "15px"],
+                  ["lines", "none"],
+                  ["detail", "true", 4, "ngFor", "ngForOf"],
+                  ["detail", "true"],
+                  [1, "ion-text-wrap"],
+                  [1, "display-flex-content", "text-center"],
+                  [1, "flex-1", "text-left"],
+                  [1, "flex-2", "color-text"],
+                  [1, "flex-2", "text-left"],
+                ],
+                template: function (o, i) {
+                  1 & o &&
+                    (t.TgZ(0, "ion-header")(1, "ion-toolbar")(
+                      2,
+                      "ion-buttons",
+                      0,
+                    ),
+                    t._UZ(3, "ion-back-button", 1),
+                    t.qZA(),
+                    t.TgZ(4, "ion-title"),
+                    t._uU(5, "H\xf3a \u0111\u01a1n"),
+                    t.qZA(),
+                    t.TgZ(6, "ion-buttons", 2)(7, "ion-button", 3)(
+                      8,
+                      "ion-button",
+                      4,
+                    ),
+                    t.NdJ("click", function () {
+                      return i.UpdateItem(i.formGroup.value);
+                    }),
+                    t._UZ(9, "ion-icon", 5),
+                    t.qZA()()()()(),
+                    t.TgZ(10, "ion-content", 6)(11, "form", 7)(12, "ion-item")(
+                      13,
+                      "ion-label",
+                      8,
+                    ),
+                    t._uU(14, "H\xf3a \u0111\u01a1n"),
+                    t.qZA(),
+                    t._UZ(15, "ion-input", 9),
+                    t.qZA(),
+                    t.TgZ(16, "ion-item")(17, "ion-label", 8),
+                    t._uU(18, "Ng\xe0y t\u1ea1o"),
+                    t.qZA(),
+                    t._UZ(19, "ion-input", 10),
+                    t.qZA(),
+                    t.TgZ(20, "ion-item")(21, "ion-label", 8),
+                    t._uU(22, "Th\xe0nh ti\u1ec1n"),
+                    t.qZA(),
+                    t._UZ(23, "ion-input", 11),
+                    t.qZA(),
+                    t.TgZ(24, "ion-item")(25, "ion-label", 8),
+                    t._uU(26, "Gi\u1ea3m gi\xe1"),
+                    t.qZA(),
+                    t._UZ(27, "ion-input", 12),
+                    t.qZA(),
+                    t.TgZ(28, "ion-item")(29, "ion-label", 8),
+                    t._uU(30, "T\u1ed5ng ti\u1ec1n"),
+                    t.qZA(),
+                    t._UZ(31, "ion-input", 13),
+                    t.qZA(),
+                    t.TgZ(32, "ion-item")(33, "ion-label", 8),
+                    t._uU(34, "Ti\u1ec1n kh\xe1ch tr\u1ea3"),
+                    t.qZA(),
+                    t._UZ(35, "ion-input", 14),
+                    t.qZA(),
+                    t.TgZ(36, "ion-item")(37, "ion-label", 8),
+                    t._uU(38, "Ti\u1ec1n tr\u1ea3 l\u1ea1i"),
+                    t.qZA(),
+                    t._UZ(39, "ion-input", 15),
+                    t.qZA()(),
+                    t._UZ(40, "ion-item-divider"),
+                    t.TgZ(41, "h2", 16),
+                    t._uU(42, "Danh s\xe1ch"),
+                    t.qZA(),
+                    t.TgZ(43, "ion-list", 17),
+                    t.YNc(44, Z, 13, 9, "ion-item", 18),
+                    t.qZA()()),
+                    2 & o &&
+                      (t.xp6(11),
+                      t.Q6J("formGroup", i.formGroup),
+                      t.xp6(33),
+                      t.Q6J(
+                        "ngForOf",
+                        null == i.history || null == i.history.data
+                          ? null
+                          : i.history.data.posDetails,
+                      ));
+                },
+                dependencies: [
+                  m.sg,
+                  s._Y,
+                  s.JJ,
+                  s.JL,
+                  r.oU,
+                  r.YG,
+                  r.Sm,
+                  r.W2,
+                  r.Gu,
+                  r.gu,
+                  r.pK,
+                  r.Ie,
+                  r.rH,
+                  r.Q$,
+                  r.q_,
+                  r.wd,
+                  r.sr,
+                  r.j9,
+                  r.cs,
+                  s.sg,
+                  s.u,
+                  m.H9,
+                ],
+                styles: [
+                  ".text-color[_ngcontent-%COMP%]{color:#8a2be2}.w-100[_ngcontent-%COMP%]{width:100%}#vendor-form[_ngcontent-%COMP%]   #vendor-option[_ngcontent-%COMP%]     .mat-form-field-flex{background:white!important;padding:0!important}.text-center[_ngcontent-%COMP%]{text-align:center}.text-left[_ngcontent-%COMP%]{text-align:left}.display-flex-content[_ngcontent-%COMP%]{display:flex;flex-direction:row}.example-spacer[_ngcontent-%COMP%]{flex:1 1 auto}.flex-1[_ngcontent-%COMP%]{flex:1}.flex-2[_ngcontent-%COMP%]{flex:2}.color-text[_ngcontent-%COMP%]{color:#666;font-size:14px}",
+                ],
+              })),
+              e
+            );
+          })(),
+        },
+      ];
+      let D = (() => {
+        class e {}
+        return (
+          (e.ɵfac = function (o) {
+            return new (o || e)();
+          }),
+          (e.ɵmod = t.oAB({ type: e })),
+          (e.ɵinj = t.cJS({ imports: [g.Bz.forChild(A), g.Bz] })),
+          e
+        );
+      })();
+      var U = u(5064);
+      let P = (() => {
+        class e {}
+        return (
+          (e.ɵfac = function (o) {
+            return new (o || e)();
+          }),
+          (e.ɵmod = t.oAB({ type: e })),
+          (e.ɵinj = t.cJS({ imports: [m.ez, U.q, s.u5, r.Pc, D, s.UX] })),
+          e
+        );
+      })();
+    },
+  },
+]);

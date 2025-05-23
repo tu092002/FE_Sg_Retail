@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkapp=self.webpackChunkapp||[]).push([[3041],{3041:(B,n,a)=>{a.r(n),a.d(n,{BinAddPageModule:()=>M});var l=a(6895),_=a(4006),E=a(8779),P=a(2212),u=a(5064),o=a(4650);let M=(()=>{class d{}return d.\u0275fac=function(A){return new(A||d)},d.\u0275mod=o.oAB({type:d}),d.\u0275inj=o.cJS({imports:[l.ez,_.u5,E.Pc,u.q,_.UX,P.BinAddPageRoutingModule]}),d})()}}]);
